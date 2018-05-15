@@ -1,6 +1,6 @@
 
-var serverWMS="http://localhost:8080/geoserver/pruebas/wms";
-var serverOWS="http://localhost:8080/geoserver/pruebas/ows";
+var serverWMS="http://localhost:8080/geoserver/mapping_sgg/wms";
+var serverOWS="http://localhost:8080/geoserver/mapping_sgg/ows";
 
 /*LAYERS NAMES */
 
@@ -11,15 +11,15 @@ var serverOWS="http://localhost:8080/geoserver/pruebas/ows";
  */
 var openstreetmapURL='https://{s}.tile.openstreetmap.se/hydda/full/{z}/{x}/{y}.png';
 var satelital='https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}';
-var centroEstudio="pruebas:municipios_poligonos";
+var centroEstudio="mapping_sgg:municipios_poligonos";
 /**
  * Layers tematicos
  * Capas base pueden ser incluidas diferentes capas
  * de distintos servicios 
  */
-var hospitalesPublicos='pruebas:hospitales_publicos';
-var hospitalesPrivados='pruebas:hospitales_privados';
-var hospitalesISSS='pruebas:hospitales_isss';
+var hospitalesPublicos='mapping_sgg:hospitales_publicos';
+var hospitalesPrivados='mapping_sgg:hospitales_privados';
+var hospitalesISSS='mapping_sgg:hospitales_isss';
 
 
 /*tipo de imagen servicio wms*/
