@@ -1,0 +1,18 @@
+var isss={
+    "type": "FeatureCollection",
+    "name": "tru",
+    "crs": { "type": "name", "properties": { "name": "urn:ogc:def:crs:OGC:1.3:CRS84" } },
+    "features": [
+    { "type": "Feature", "properties": { "HOSPITAL": "Hospital General.", "X": -89.203622, "Y": 13.703465, "DIRECCION": "Alameda Juan Pablo II? y 25 Av. Nte. S.S.", "TELEFONO 1": "2591-4000", "TELEFONO 2": null, "TELEFONO 3": null }, "geometry": { "type": "Point", "coordinates": [ -89.203622, 13.703465 ] } },
+    { "type": "Feature", "properties": { "HOSPITAL": "Hospital 1 de mayo.", "X": -89.204254, "Y": 13.699911, "DIRECCION": "Final C. Arce y 23 Av. Sur #1303. S.S.", "TELEFONO 1": "2591-4700", "TELEFONO 2": null, "TELEFONO 3": null }, "geometry": { "type": "Point", "coordinates": [ -89.204254, 13.699911 ] } },
+    { "type": "Feature", "properties": { "HOSPITAL": "Hospital Policl?nico Arce.", "X": -89.203077, "Y": 13.700419, "DIRECCION": "Final C. Arce #1290 e\/ 21 y 23 Av. Norte S.S.", "TELEFONO 1": "2591-6500", "TELEFONO 2": null, "TELEFONO 3": null }, "geometry": { "type": "Point", "coordinates": [ -89.203077, 13.700419 ] } },
+    { "type": "Feature", "properties": { "HOSPITAL": "Hospital M?dico Quir?rgico.", "X": -89.206766, "Y": 13.702313, "DIRECCION": "Alameda Juan Pablo II e\/ 25 y 27 Av. Norte. S.S", "TELEFONO 1": "2591-5500", "TELEFONO 2": null, "TELEFONO 3": null }, "geometry": { "type": "Point", "coordinates": [ -89.206766, 13.702313 ] } },
+    { "type": "Feature", "properties": { "HOSPITAL": "Hospital Policl?nico Roma.", "X": -89.225062, "Y": 13.694627, "DIRECCION": "Bo. Venezuela y C. El Progreso Col. Roma S.S.", "TELEFONO 1": "2591-2126", "TELEFONO 2": "2591-2127", "TELEFONO 3": "2591-2128" }, "geometry": { "type": "Point", "coordinates": [ -89.225062, 13.694627 ] } },
+    { "type": "Feature", "properties": { "HOSPITAL": "Hospital Policl?nico Planes de Renderos.", "X": -89.19439, "Y": 13.646843, "DIRECCION": "Km. 9 y ? Carretera Planes de Renderos S.S.", "TELEFONO 1": "2593-0047", "TELEFONO 2": "2593-0048", "TELEFONO 3": "2593-0049" }, "geometry": { "type": "Point", "coordinates": [ -89.19439, 13.646843 ] } },
+    { "type": "Feature", "properties": { "HOSPITAL": "Hospital Oncolog?a.", "X": -89.20538, "Y": 13.701972, "DIRECCION": "Alameda Juan Pablo II e\/ 25 y 27 Av. Norte. S.S", "TELEFONO 1": "2591-5000", "TELEFONO 2": null, "TELEFONO 3": null }, "geometry": { "type": "Point", "coordinates": [ -89.20538, 13.701972 ] } },
+    { "type": "Feature", "properties": { "HOSPITAL": "Hospital General de Especialidades.", "X": -89.202849, "Y": 13.703668, "DIRECCION": "Alameda Juan Pablo II?y 25 Av. Norte. S.S.", "TELEFONO 1": "2591-4500", "TELEFONO 2": null, "TELEFONO 3": null }, "geometry": { "type": "Point", "coordinates": [ -89.202849, 13.703668 ] } },
+    { "type": "Feature", "properties": { "HOSPITAL": "Hospital Amatepec.", "X": -89.163562, "Y": 13.700653, "DIRECCION": "km. 3 1\/2 Bo. El Ej?rcito. Soyapango", "TELEFONO 1": "2591-5700", "TELEFONO 2": null, "TELEFONO 3": null }, "geometry": { "type": "Point", "coordinates": [ -89.163562, 13.700653 ] } },
+    { "type": "Feature", "properties": { "HOSPITAL": "Hospital Policl?nico Zacamil.", "X": -89.204093, "Y": 13.728372, "DIRECCION": "Calle. y? Col. Zacamil,? Frente a INAM", "TELEFONO 1": "2591-6200", "TELEFONO 2": null, "TELEFONO 3": null }, "geometry": { "type": "Point", "coordinates": [ -89.204093, 13.728372 ] } }
+    ]
+    }
+    
