@@ -17,7 +17,7 @@ map.on('locationfound', function (e) {
     L.marker(e.latlng, {
         icon: you,
     }).addTo(map).bindPopup("Tú estas aqui").openPopup();
-    Localizacion=e;
+    
 });
 
 console.log(Localizacion);
@@ -31,6 +31,7 @@ map.locate({
  */
 var openstreetmap = L.tileLayer(openstreetmapURL);
 var satelitalmap = L.tileLayer(satelital);
+
 var centroEstudioLayer = L.tileLayer.wms(serverWMS, {
     layers: centroEstudio,
     format: tipoImagen,
@@ -38,7 +39,7 @@ var centroEstudioLayer = L.tileLayer.wms(serverWMS, {
 
 
 });
-openstreetmap.addTo(map);
+
 /*obtenidos por wms*/
 /**
  * Layers para mapas tematicos
@@ -65,7 +66,7 @@ var  isssLayer= L.tileLayer.wms(serverWMS,{
     transparent: true
 });
 */
-
+/*
 var parameters = L.Util.extend(defaultParametersHospitalesISSS);
 
 var json=
@@ -80,7 +81,7 @@ $.ajax({
 
     }
 });
-
+*/
 
 /*
 */
@@ -110,7 +111,7 @@ var publicosLayer = L.geoJSON(publicos, {
                 "<p><b> Telefono 3: </b>" + ((feature.properties.telefono_3 == null) ? "No Disponible" : feature.properties.telefono_3) + "</p>") +
             "<p><b>Rutas de buses: </b>" + feature.properties.ruta_bus + "</p>" +
             "<div class='centerdiv'>" +
-            "<button data='" + feature.properties.id + "' class='btn-especialidad-publicos btn-success'>" + "Ver Especialidades " +
+            "<button data='" + feature.properties.id + "' class='btn-especialidad-publicos btn-success' data-toggle='modal' data-target='#myModal'>" + "Ver Especialidades " +
             "</button>" +
             "</div>"
 
@@ -121,11 +122,17 @@ var publicosLayer = L.geoJSON(publicos, {
 /*termina aqui layer publico*/
 /*response con ajax de especialidades publicas*/
 $("div").on("click", '.btn-especialidad-publicos', function () {
-    var id = $(this).attr("data");
-    console.log(ID);
+    var datos={ "id":$(this).attr("data")}
+    $.ajax({
+        type: "post",
+        url: "/php/ejecucion.php",
+        data: datos,
 
+        success: function (response) {
+         $(".modal-body").html(response);
 
-
+        }
+    });
 });
 /* Termina response especialidades publicas*/
 
@@ -153,7 +160,7 @@ var privadosLayer = L.geoJSON(privados, {
                 "<p><b> Telefono 3: </b>" + ((feature.properties.telefono_3 == null) ? "No Disponible" : feature.properties.telefono_3) + "</p>") +
             "<p><b>Rutas de buses: </b>" + feature.properties.ruta_bus + "</p>" +
             "<div class='centerdiv'>" +
-            "<button  data='" + feature.properties.id + "' class='btn-especialidad-privados btn-success'>" + "Ver Especialidades" +
+            "<button  data='" + feature.properties.id + "' class='btn-especialidad-privados btn-success' data-toggle='modal' data-target='#myModal'>" + "Ver Especialidades" +
             "</button>" +
             "</div>"
         );
@@ -162,10 +169,20 @@ var privadosLayer = L.geoJSON(privados, {
 });
 /* Termina hasta aqui el layer privado*/
 
-/*response para especialidades publicas*/
+/*response para especialidades privadas*/
 $("div").on("click", '.btn-especialidad-privados', function () {
-    var ID = $(this).attr("data");
-    console.log(ID);
+    var datos={ "id":$(this).attr("data")}
+    
+    $.ajax({
+        type: "post",
+        url: "/php/ejecucion.php",
+        data: datos,
+
+        success: function (response) {
+         $(".modal-body").html(response);
+
+        }
+    });
 });
 /*termina response de especialidades privadas
 
@@ -203,7 +220,7 @@ var isssLayer = L.geoJSON(isss, {
                 "<p><b> Telefono 3: </b>" + ((feature.properties.telefono_3 == null) ? "No Disponible" : feature.properties.telefono_3) + "</p>") +
             "<p><b>Rutas de buses: </b>" + feature.properties.ruta_bus + "</p>" +
             "<div class='centerdiv'>" +
-            "<button type=button  data='" + feature.properties.id + "' class='btn-especialidad-isss btn-success' data-toggle='modal' data-target='#myModal'>" + "Ver Especialidades" +
+            "<button type=button  data='" + feature.properties.id + "' class='btn-especialidad-isss btn-success' data-toggle='modal' data-target='#myModal' >" + "Ver Especialidades" +
             "</button>" +
             "</div>"
         );
@@ -213,8 +230,17 @@ var isssLayer = L.geoJSON(isss, {
 
 /* Termina creacion de layer isss */
 $("div").on("click", '.btn-especialidad-isss', function () {
-    var ID = $(this).attr("data");
-    console.log(ID);
+    var datos={ "id":$(this).attr("data")}
+    $.ajax({
+        type: "post",
+        url: "/php/ejecucion.php",
+        data: datos,
+
+        success: function (response) {
+         $(".modal-body").html(response);
+
+        }
+    });
 });
 
 
@@ -223,9 +249,11 @@ $("div").on("click", '.btn-especialidad-isss', function () {
  * con un controlador
  */
 var mapasBase = {
+    "Satelital": satelitalmap,
     "OpenStreetMap": openstreetmap,
     "Gran San Salvador": centroEstudioLayer,
-    "Satelital": satelitalmap
+    
+  
 };
 
 var mapasTematicos = {
@@ -239,6 +267,15 @@ var mapasTematicos = {
 /**
  * todos los elementos de control
  */
-
+var options = {
+    position: 'topleft',
+    lengthUnit: {
+      factor: 0.539956803,    //  from km to nm
+      display: 'Nautical Miles',
+      decimal: 2
+    }
+  };
+satelitalmap.addTo(map);
 L.control.scale().addTo(map);
 L.control.layers(mapasBase, mapasTematicos).addTo(map);
+L.control.ruler(options).addTo(map);

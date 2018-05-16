@@ -1,18 +1,40 @@
+
 <?php
-phpinfo();
-$host="127.0.0.1";
-$port="5432";
-$user="postgres";
-$pass="holamundo";
-$dbname="sgg_db";
 
-$connect = pg_connect("host=$host, port=$port, user=$user, 
-pass=$pass, dbname=$dbname");
 
-if(!$connect)
-echo "<p><i>No me conecte</i></p>";
-else
-echo "<p><i>Me conecte</i></p>";
+function conexion($user,$password,$dbname,$port,$host){
+$cadenaConexion = "host=$host port=$port dbname=$dbname user=$user password=$password";
 
-pg_close($connect);
+$conexion = pg_connect($cadenaConexion) or die("Error en la Conexión: ".pg_last_error());
+
+return $conexion;
+}
+
+function consulta($conexion,$id,$resultado){
+    $sql = "SELECT * FROM especialidades where id='".$id."'";
+        $ok = true;
+
+        // Ejecutar la consulta:
+         $rs = pg_query( $conexion, $sql );
+        if( $rs )
+        {
+            // Obtener el número de filas:
+
+             if( pg_num_rows($rs) > 0 )
+            {
+                $i=1;
+                // Recorrer el resource y mostrar los datos:
+                 while( $obj = pg_fetch_object($rs) )
+                     echo "<b>Tipo:</b> ".$obj->especialidad."<br>";
+                
+                }
+            else
+                echo "<p>No se encontraron especialidades</p>";
+        }
+        else
+            $ok = false;
+        return $resultado;
+    }
+
 ?>
+

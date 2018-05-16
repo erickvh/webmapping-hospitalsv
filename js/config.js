@@ -11,6 +11,7 @@ var serverOWS="http://localhost:8080/geoserver/mapping_sgg/ows";
  */
 var openstreetmapURL='https://{s}.tile.openstreetmap.se/hydda/full/{z}/{x}/{y}.png';
 var satelital='https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}';
+
 var centroEstudio="mapping_sgg:municipios_poligonos";
 /**
  * Layers tematicos
