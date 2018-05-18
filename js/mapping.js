@@ -1,4 +1,5 @@
-var map = L.map('map').setView([13.71685, -89.20933], 10.5);
+
+var map = L.map('map').setView([13.71685, -89.20933], 11);
 map.on('locationerror', function (e) {
         alert("navegador no permite geolocalizacion o esta desactivado");;
     }
@@ -20,11 +21,11 @@ map.on('locationfound', function (e) {
     
 });
 
-console.log(Localizacion);
 
 map.locate({
     setView: true,
-    maxZoom: 12
+    
+
 });
 /**
  * Layers para mapas base
@@ -193,18 +194,7 @@ var myicon = L.icon({
     iconAnchor: [16, 37],
     popupAnchor: [0, -28]
 });
-function calcularDistancia(){
 
-    rad = function(x) {return x*Math.PI/180;}
-   var R = 6378.137; //Radio de la tierra en km
-    var dLat = rad( lat2 - lat1 );
-    var dLong = rad( lon2 - lon1 );
-   var a = Math.sin(dLat/2) * Math.sin(dLat/2) + Math.cos(rad(lat1)) * Math.cos(rad(lat2)) * Math.sin(dLong/2) * Math.sin(dLong/2);
-    var c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1-a));
-    var d = R * c;
-   return d.toFixed(3); //Retorna tres decimales
-    
-}
 var isssLayer = L.geoJSON(isss, {
     pointToLayer: function (feature, latlng) {
         return L.marker(latlng, {
@@ -224,6 +214,7 @@ var isssLayer = L.geoJSON(isss, {
             "</button>" +
             "</div>"
         );
+        
     },
 
 });
@@ -244,38 +235,48 @@ $("div").on("click", '.btn-especialidad-isss', function () {
 });
 
 
+/* layer tematico prueba*/
+var municipios = L.geoJSON(municipios, {
+
+    onEachFeature: function (feature, layer) {
+ 
+    },
+
+});
 /**
  * agregando mapas base y tematicos en json para poder servirlos 
  * con un controlador
  */
 var mapasBase = {
-    "Satelital": satelitalmap,
+    "Mapa Satelital": satelitalmap,
     "OpenStreetMap": openstreetmap,
-    "Gran San Salvador": centroEstudioLayer,
+    "Gran San Salvador": centroEstudioLayer, 
     
   
 };
 
-var mapasTematicos = {
+var mapasTematicos = { 
+    "Hospitales":{
     "Hospitales publicos": publicosLayer,
     "Hospitales privados": privadosLayer,
     "Hospitales ISSS": isssLayer,
-    "Zona de estudio": centroEstudioLayer,
-
+    "Zona de estudio": municipios,
+}
 };
 
 /**
  * todos los elementos de control
  */
-var options = {
-    position: 'topleft',
-    lengthUnit: {
-      factor: 0.539956803,    //  from km to nm
-      display: 'Nautical Miles',
-      decimal: 2
-    }
-  };
-satelitalmap.addTo(map);
+var options={
+groupCheckBoxes:true,
+
+
+};
+openstreetmap.addTo(map);
+
+
+L.control.ruler().addTo(map);
 L.control.scale().addTo(map);
-L.control.layers(mapasBase, mapasTematicos).addTo(map);
-L.control.ruler(options).addTo(map);
+L.control.groupedLayers(mapasBase,mapasTematicos,options).addTo(map);
+//L.control.layers(mapasBase, mapasTematicos).addTo(map);
+L.Control.measureControl().addTo(map);
